@@ -1,13 +1,20 @@
 @import '../../assets/scss/variables.scss';
 
 .nav {
-    max-width: 1500px;
-    width: 100%;
     padding: 10px;
     
     display: flex;
     justify-content: center;
     align-items: center;
+
+    border-bottom: 1px #a8a8a8 solid;
+
+    &__container {
+        max-width: 1500px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 
     &__left, &__right, &__center {
         flex: 1;

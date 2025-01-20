@@ -4,6 +4,12 @@
     }
 }
 
+@mixin mobileS {
+    @media screen and (max-width: 435px) {
+        @content;
+    }
+}
+
 @mixin mobileXS {
     @media screen and (max-width: 374px) {
         @content;
