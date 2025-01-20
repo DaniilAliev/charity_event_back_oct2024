@@ -1,0 +1,39 @@
+@import '../../assets/scss/variables.scss';
+
+.nav {
+    max-width: 1500px;
+    width: 100%;
+    padding: 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__left, &__right, &__center {
+        flex: 1;
+    }
+
+    &__center {
+        text-align: center;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    &__right {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.nav .left,
+.nav .center,
+.nav .right {
+    flex: 1;
+}
+
+.nav .center {
+    text-align: center;
+}
+
