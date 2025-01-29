@@ -1,11 +1,50 @@
 import './App.css'
+import { isAxiosError } from 'axios'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ToastContainer, toast } from 'react-toastify';
+
+const MAX_RETRIES = 2
+const HTTP_STATUS_TO_NOT_RETRY = new Set([400, 401, 403, 404])
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: (failureCount, error) => {
+        if (failureCount > MAX_RETRIES) {
+          return false
+        }
+
+        if (
+          isAxiosError(error) &&
+          HTTP_STATUS_TO_NOT_RETRY.has(error.response?.status ?? 0)
+        ) {
+          return false
+        }
+
+        return true
+      }
+    },
+    mutations: {
+      onError: (error) => {
+        if (error?.status === 500) {
+          console.log(true)
+          toast.error("Серверная ошибка")
+        }
+      }
+    }
+  }
+})
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </QueryClientProvider>
     </>
   )
 }
