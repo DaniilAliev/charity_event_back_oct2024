@@ -8,3 +8,8 @@ export enum ERROR_TYPES {
     BAD_REQUEST = 'BAD_REQUEST',
     SERVER_ERROR = 'SERVER_ERROR'
 }
+
+export interface CustomError extends Error {
+    status?: number;
+}
+

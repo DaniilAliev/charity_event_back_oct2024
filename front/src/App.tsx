@@ -5,6 +5,10 @@ import { router } from './router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastContainer, toast } from 'react-toastify';
 
+interface CustomError extends Error {
+  status?: number;
+}
+
 const MAX_RETRIES = 2
 const HTTP_STATUS_TO_NOT_RETRY = new Set([400, 401, 403, 404])
 
@@ -28,9 +32,8 @@ const queryClient = new QueryClient({
       }
     },
     mutations: {
-      onError: (error) => {
+      onError: (error: CustomError) => {
         if (error?.status === 500) {
-          console.log(true)
           toast.error("Серверная ошибка")
         }
       }

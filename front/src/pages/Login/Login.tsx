@@ -4,6 +4,9 @@ import LayoutSize from '../../components/layouts/LayoutSize/LayoutSize'
 import './Login.scss'
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../shared/hooks/useAuth';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AxiosError } from "axios";
 
 type Inputs = {
   login: string
@@ -11,7 +14,11 @@ type Inputs = {
 }
 
 const Login = () => {
-  const { mutateAsync } = useAuth()
+  const [error, setError] = useState<boolean | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const { mutateAsync: auth } = useAuth()
+
+  const navigate = useNavigate()
 
   const {
     register,
@@ -19,7 +26,21 @@ const Login = () => {
   } = useForm<Inputs>()
 
   const onSubmit = async ({ login, password }: Inputs) => {
-    await mutateAsync({ login, password })
+    try {
+      setIsLoading(true)
+      setError(false)
+
+      await auth({ login, password })
+
+      navigate('/')
+    } catch (error) {
+      const typedError = error as AxiosError
+      if (typedError.status === 400) {
+        setError(true)
+      }
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -38,6 +59,7 @@ const Login = () => {
                   variant="outlined" 
                   {...register('login')} 
                 />
+                <div className='login__form__error'>{error && `Указан неверный Логин`}</div>
                 <TextField 
                   fullWidth 
                   id="outlined-basic" 
@@ -46,9 +68,10 @@ const Login = () => {
                   type='password' 
                   {...register('password')} 
                 />
+                <div className='login__form__error'>{error && `Указан неверный Пароль`}</div>
             </div>
 
-            <Button className='login__form__button' type='submit' variant="primary">Войти</Button>
+            <Button disabled={isLoading} className='login__form__button' type='submit' variant="primary">Войти</Button>
         </form>
       </div>
     </LayoutSize>

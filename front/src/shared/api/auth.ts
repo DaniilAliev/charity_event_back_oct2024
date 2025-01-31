@@ -1,6 +1,9 @@
 import { BaseService } from ".";
+import Cookies from 'js-cookie';
 
-class AuthService extends BaseService {
+const COOKIE_NAME = 'jwt_auth';
+
+class AuthServiceClass extends BaseService {
     constructor() {
         super('api')
     }
@@ -10,8 +13,16 @@ class AuthService extends BaseService {
             password
         })
     }
+
+    setCookie(token: string) {
+        Cookies.set(COOKIE_NAME, token);
+    }
+
+    getCookie() {
+        return Cookies.get(COOKIE_NAME);
+    }
 }
 
-const authService = new AuthService();
+const AuthService = new AuthServiceClass();
 
-export default authService;
+export default AuthService;
