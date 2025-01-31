@@ -1,8 +1,12 @@
 import Logo from '@/assets/svgs/logo.svg'
 import { Button } from 'react-bootstrap'
 import './Nav.scss'
+import AuthService from '../../../shared/api/auth';
+import ProfileNav from '../ProfileNav/ProfileNav';
 
 const Nav = () => {
+  const cookies = AuthService.getCookie();
+
   return (
     <div className="nav">
       <div className='nav__container'>
@@ -15,7 +19,7 @@ const Nav = () => {
         </div>
 
         <div className='nav__right'>
-          <Button variant='outline-dark' >Войти</Button>
+          {cookies ?<ProfileNav /> : <Button variant='outline-dark' >Войти</Button>}
         </div>
       </div>
     </div>

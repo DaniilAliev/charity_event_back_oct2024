@@ -1,0 +1,26 @@
+.profile-nav {
+    position: relative;
+
+    &__dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #fff;
+        padding: 10px 16px 0 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 192px;
+    }
+
+    &__link-container {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 10px;
+    }
+
+    &__link {
+        width: 70%;
+        color: black;
+        text-decoration: none;
+    }
+}

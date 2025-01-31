@@ -21,6 +21,14 @@ class AuthServiceClass extends BaseService {
     getCookie() {
         return Cookies.get(COOKIE_NAME);
     }
+
+    removeCookie() {
+        Cookies.remove(COOKIE_NAME);
+    }
+
+    logout() {
+        this.removeCookie();
+    }
 }
 
 const AuthService = new AuthServiceClass();
