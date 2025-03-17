@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form"
 import { TextField } from '@mui/material';
-import LayoutSize from '../../components/layouts/LayoutSize/LayoutSize'
 import './Login.scss'
 import { Button } from 'react-bootstrap';
-import { useAuth } from '../../shared/hooks/useAuth';
+import { useAuth } from "../../shared/hooks/useAuth/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
+import LayoutSize from "../../layouts/LayoutSize/LayoutSize";
 
 type Inputs = {
   login: string

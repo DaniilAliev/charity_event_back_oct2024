@@ -4,8 +4,8 @@ import Person2SharpIcon from '@mui/icons-material/Person2Sharp';
 import ExitToAppSharpIcon from '@mui/icons-material/ExitToAppSharp';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../router/constants';
-import AuthService from '../../../shared/api/auth';
+import { ROUTES } from '../../router/constants';
+import AuthService from '../../shared/api/auth';
 
 const ProfileNav = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)

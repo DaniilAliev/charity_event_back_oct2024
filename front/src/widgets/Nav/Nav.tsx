@@ -1,7 +1,7 @@
 import Logo from '@/assets/svgs/logo.svg'
 import { Button } from 'react-bootstrap'
 import './Nav.scss'
-import AuthService from '../../../shared/api/auth';
+import AuthService from '../../shared/api/auth';
 import ProfileNav from '../ProfileNav/ProfileNav';
 
 const Nav = () => {

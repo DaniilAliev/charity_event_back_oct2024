@@ -1,0 +1,40 @@
+.item {
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    padding: 20px 16px;
+    min-height: 700px;
+    height: 100%;
+    display: flex; /* Добавляем флекс-контейнер */
+    flex-direction: column; 
+
+    &__title {
+        h2 {
+            font-size: 24px;
+        }
+
+        border-bottom: 1px solid #E0E0E0;
+        min-height: 140px;
+        overflow: hidden;
+    }
+
+    &__info {
+        flex-grow: 1; /* Занимает всю доступную высоту */
+        display: flex; /* Добавляем флекс для __info */
+        flex-direction: column; 
+        &_item {
+            padding-bottom: 20px;
+            &_title {
+                font-weight: 600;
+            }
+        }
+
+        &_contributors {
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
+    }
+
+    &__help-button {
+        margin-top: auto;
+        width: 100%;
+    }
+}

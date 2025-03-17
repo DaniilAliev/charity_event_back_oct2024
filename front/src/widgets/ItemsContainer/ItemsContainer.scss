@@ -1,0 +1,19 @@
+.items-container {
+    padding: 16px 36px;
+    background-color: white;
+    border: 1px solid #E0E0E0;
+
+    h2 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &__container {
+        &--column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
+            gap: 24px;
+        }
+    }
+}

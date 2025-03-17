@@ -1,9 +1,10 @@
 import './App.css'
-import { isAxiosError } from 'axios'
+import axios, { isAxiosError } from 'axios'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastContainer, toast } from 'react-toastify';
+import AuthService from './shared/api/auth'
 
 interface CustomError extends Error {
   status?: number;
@@ -11,6 +12,20 @@ interface CustomError extends Error {
 
 const MAX_RETRIES = 2
 const HTTP_STATUS_TO_NOT_RETRY = new Set([400, 401, 403, 404])
+
+axios.interceptors.request.use(
+  (config) => {
+    const token = AuthService.getCookie();
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 
 const queryClient = new QueryClient({
   defaultOptions: {

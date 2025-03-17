@@ -1,0 +1,13 @@
+.main {
+    padding: 30px 40px;
+    h1 {
+        font-size: 32px;
+    }
+
+    &__container {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 20px;
+    }
+}

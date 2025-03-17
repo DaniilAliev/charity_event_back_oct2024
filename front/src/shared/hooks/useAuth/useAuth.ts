@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import AuthService from "../api/auth"
+import AuthService from "../../api/auth";
 import { AxiosResponse } from "axios"
 
 export const useAuth = () => 
